@@ -1,0 +1,6 @@
+@pest.pricing_HostAddress = http://localhost:5229
+
+GET {{pest.pricing_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

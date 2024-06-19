@@ -7,3 +7,11 @@ services:
       dockerfile: dockerfile
     ports:
       - 8080:8080
+
+  pest-pricing:
+    container_name: pricing
+    build:
+      context: ./src/pest.pricing
+      dockerfile: dockerfile
+    ports:
+      - 8090:8080
