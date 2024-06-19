@@ -5,25 +5,15 @@ using Codeblaze.SemanticKernel.Connectors.Ollama;
 
 #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-// var kernelBuilder = Kernel.CreateBuilder();
 
 var modelId = "phi3";
 var ollamaUri = new Uri("http://localhost:11434");
 
-// builder.Services.AddOpenAIChatCompletion(modelId, ollamaUri, apiKey: null);
-// kernelBuilder.AddOllamaTextGeneration(modelId, ollamaUri);
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 // lets some AI Kernel
-var kernel = builder.Services.AddKernel();
-kernel.AddOpenAIChatCompletion(modelId, ollamaUri, apiKey: null);
-
-
-// builder.Services.AddTransient<HttpClient>();
-
-
+var aiKernel = builder.Services.AddKernel();
+aiKernel.AddOpenAIChatCompletion(modelId, ollamaUri, apiKey: null);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
