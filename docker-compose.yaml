@@ -1,0 +1,9 @@
+version: '3'
+services:
+  pest-tracking:
+    container_name: tracking
+    build:
+      context: ./src/pest.tracking
+      dockerfile: dockerfile
+    ports:
+      - 8080:8080

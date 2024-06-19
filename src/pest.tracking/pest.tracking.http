@@ -1,0 +1,6 @@
+@pest.tracking_HostAddress = http://localhost:5246
+
+GET {{pest.tracking_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
