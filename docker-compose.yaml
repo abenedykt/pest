@@ -12,6 +12,8 @@ services:
   tracking-persistency:
     container_name: tracking-persistency
     image: mongo:latest
+    volumes:
+      - tracking-persistency:/data/db
     ports:
       - 27017:27017
     networks: 
@@ -35,3 +37,7 @@ networks:
     ipam:
       config:
         - subnet: "10.10.0.0/24"
+
+volumes:
+  tracking-persistency:
+    driver: local
