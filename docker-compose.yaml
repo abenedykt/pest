@@ -1,6 +1,6 @@
 version: '3'
 services:
-  pest-tracking:
+  tracking:
     container_name: tracking
     build:
       context: ./src/pest.tracking
@@ -9,8 +9,15 @@ services:
       - 8080:8080
     networks:
       - ui
+  tracking-persistency:
+    container_name: tracking-persistency
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks: 
+      - ui
 
-  pest-pricing:
+  pricing:
     container_name: pricing
     build:
       context: ./src/pest.pricing
