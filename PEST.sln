@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pest.performance.tests", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pest.tests.e2e", "tests\pest.tests.e2e\pest.tests.e2e.csproj", "{92360070-AC82-4604-BDB1-95A801623744}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A4C11583-48F1-46F1-8155-D7AA7B2CA098}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pest.pricing", "src\pest.pricing\pest.pricing.csproj", "{C8260CBE-F39B-41F2-A1F8-67B5547E1B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pest.tracking", "src\pest.tracking\pest.tracking.csproj", "{1E7360C2-B620-4607-AB45-A427DF098B8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +32,19 @@ Global
 		{92360070-AC82-4604-BDB1-95A801623744}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92360070-AC82-4604-BDB1-95A801623744}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92360070-AC82-4604-BDB1-95A801623744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8260CBE-F39B-41F2-A1F8-67B5547E1B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8260CBE-F39B-41F2-A1F8-67B5547E1B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8260CBE-F39B-41F2-A1F8-67B5547E1B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8260CBE-F39B-41F2-A1F8-67B5547E1B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E7360C2-B620-4607-AB45-A427DF098B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E7360C2-B620-4607-AB45-A427DF098B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E7360C2-B620-4607-AB45-A427DF098B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E7360C2-B620-4607-AB45-A427DF098B8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{29074A0B-7851-44EC-81A4-2654CD90E54E} = {B5AF29C0-0F5A-4F30-9143-89A39ED02588}
 		{92360070-AC82-4604-BDB1-95A801623744} = {B5AF29C0-0F5A-4F30-9143-89A39ED02588}
+		{C8260CBE-F39B-41F2-A1F8-67B5547E1B20} = {A4C11583-48F1-46F1-8155-D7AA7B2CA098}
+		{1E7360C2-B620-4607-AB45-A427DF098B8E} = {A4C11583-48F1-46F1-8155-D7AA7B2CA098}
 	EndGlobalSection
 EndGlobal
