@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B5AF29C0-0F5A-4F30-9143-89A39ED02588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pest.performance.tests", "tests\pest.performance.tests\pest.performance.tests.csproj", "{29074A0B-7851-44EC-81A4-2654CD90E54E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pest.tests.e2e", "tests\pest.tests.e2e\pest.tests.e2e.csproj", "{92360070-AC82-4604-BDB1-95A801623744}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -10,5 +16,19 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29074A0B-7851-44EC-81A4-2654CD90E54E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29074A0B-7851-44EC-81A4-2654CD90E54E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29074A0B-7851-44EC-81A4-2654CD90E54E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29074A0B-7851-44EC-81A4-2654CD90E54E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92360070-AC82-4604-BDB1-95A801623744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92360070-AC82-4604-BDB1-95A801623744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92360070-AC82-4604-BDB1-95A801623744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92360070-AC82-4604-BDB1-95A801623744}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29074A0B-7851-44EC-81A4-2654CD90E54E} = {B5AF29C0-0F5A-4F30-9143-89A39ED02588}
+		{92360070-AC82-4604-BDB1-95A801623744} = {B5AF29C0-0F5A-4F30-9143-89A39ED02588}
 	EndGlobalSection
 EndGlobal
