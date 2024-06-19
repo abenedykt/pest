@@ -39,5 +39,8 @@ public class UnitTest1
         Assert.NotNull(guid);
     }
 
-
+    [Fact]
+    public void Spin_up_testcontainer_with_kafka(){
+        
+    }
 }
