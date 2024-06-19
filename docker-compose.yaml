@@ -7,6 +7,8 @@ services:
       dockerfile: dockerfile
     ports:
       - 8080:8080
+    networks:
+      - ui
 
   pest-pricing:
     container_name: pricing
@@ -15,3 +17,14 @@ services:
       dockerfile: dockerfile
     ports:
       - 8090:8080
+    networks:
+      - ui
+
+networks:
+  pest:
+    driver: bridge
+  ui:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.10.0.0/24"
