@@ -5,7 +5,7 @@ services:
       context: ./src/pest.tracking
       dockerfile: dockerfile
     ports:
-      - 8080:8080
+      - 8001:8080
     networks:
       - ui
   tracking-persistency:
@@ -25,7 +25,7 @@ services:
       context: ./src/pest.pricing
       dockerfile: dockerfile
     ports:
-      - 8090:8080
+      - 8002:8080
     networks:
       - ui
 
@@ -37,7 +37,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - '2181:2181'
-      
+
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest
@@ -52,6 +52,24 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  kafka-manager:
+    container_name: kafka-manager
+    image: kafkamanager/kafka-manager
+    ports:
+      - '8011:9000'
+    depends_on:
+      - zookeeper
+    environment:
+      ZK_HOSTS: zookeeper:2181
+    
+  kafka-magic:
+    container_name: kafka-magic
+    image: digitsy/kafka-magic
+    ports:
+      - '8012:80'
+    depends_on:
+      - zookeeper
 
 networks:
   pest:

@@ -1,5 +1,5 @@
- @TRACKING_PORT=8080
-@PRICING_PORT=8090
+ @TRACKING_PORT=8001
+@PRICING_PORT=8002
 
 ### smoke test TRACKING
 GET http://localhost:{{TRACKING_PORT}}/weatherforecast
