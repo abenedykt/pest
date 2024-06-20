@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 #pragma warning disable SKEXP0010 // Type is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-var modelId = "phi3";
+var modelId = "llama3";
 var ollamaUri = new Uri("http://localhost:11434");
 
 var aiKernel = builder.Services.AddKernel();
