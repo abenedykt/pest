@@ -27,23 +27,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal --logger trx --results-directory "TestResults"
-    - name: Upload dotnet test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: TestResults
-      if: ${{ always() }}     
-          
-    - name: dotnet-tests-report
-  # You may pin to the exact commit or the version.
-  # uses: zyborg/dotnet-tests-report@ce730c068bb73480dcb37c02d40890bf8b44c953
-      uses: zyborg/dotnet-tests-report@v1.4.4
-      with: 
-        no_restore: true
-        no_build: true
-        report_name: pest_tests
-        report_title: PEST Tests
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        fail_build_on_failed_tests: true
-          
+      run: dotnet test --no-build
