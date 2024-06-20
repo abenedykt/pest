@@ -65,7 +65,7 @@ jobs:
 
       report_title: # optional
 # GITHUB_TOKEN to authenticate against API calls to attach
-report to Workflow Run.
+# report to Workflow Run.
 
       github_token: # optional
 # If true, will skip attaching the Tests Result report to
