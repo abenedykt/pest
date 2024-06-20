@@ -42,5 +42,7 @@ jobs:
         no_build: true
         report_name: pest_tests
         report_title: PEST Tests
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         fail_build_on_failed_tests: true
+        msbuild_configuration: Release
           
