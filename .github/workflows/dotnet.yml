@@ -28,3 +28,5 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build
+    - name: Coveralls
+      uses: coverallsapp/github-action@v2
