@@ -26,9 +26,105 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+     
     - name: dotnet-tests-report
+  # You may pin to the exact commit or the version.
+  # uses: zyborg/dotnet-tests-report@ce730c068bb73480dcb37c02d40890bf8b44c953
       uses: zyborg/dotnet-tests-report@v1.4.4
       with:
-        report_name: pest_tests
-        report_title: Pest Tests
-        github_token: ${{secrets.GITHUB_TOKEN }}
+# Path to the test results file which will be used to generate a report.
+# If this path is provided, it will override the invocation
+# of `dotnet test` so the **`project_path`** input and all
+# other inputs that drive test invocation behavior will be
+# ignored.  Instead a report will be generated based on the
+# results stored in the file pointed to by this path.
+# At this time, the only test results format supported is the
+# [Visual Studio Test Results (TRX)](https://docs.microsoft.com/en-us/visualstudio/test/vstest-console-options?view=vs-2019)
+# XML format.
+
+      test_results_path: # optional
+# The project or solution file to operate on. If a file or
+# directory path is not specified, the command will assume
+# the project root path.
+
+      project_path: # optional
+# When executing the unit tests against the `project_path`, if this input parameter is `true`, do not restore the project before building.
+      no_restore: # optional
+# When executing the unit tests against the `project_path`, if this input parameter is `true`, do not build the project before executing tests.
+      no_build: # optional
+# When executing the unit tests against the `project_path`, this input parameter allows you to specify the configuration passed to the msbuild process, such as `Release` or `Debug`.
+      msbuild_configuration: # optional
+# When executing the unit tests against the `project_path`, this input parameter allows you to specify the verbosity level of the msbuild process. Allowed values are q[uiet], m[inimal], n[ormal], d[etailed], and diag[nostic].
+      msbuild_verbosity: # optional
+# The name of the report object that will be attached to the
+# Workflow Run.  Defaults to the name `TEST_RESULTS_<datetime>`
+# where `<datetime>` is in the form `yyyyMMdd_hhmmss`.
+      report_name: # optional
+# The title of the report that will be embedded in the report
+# itself, which defaults to the same as the `report_name` input.
+
+      report_title: # optional
+# GITHUB_TOKEN to authenticate against API calls to attach
+report to Workflow Run.
+
+      github_token: # optional
+# If true, will skip attaching the Tests Result report to
+# the Workflow Run using a Check Run.  Useful if you just
+# want to produce a Gist-based report via the `gist_name`
+# and `gist_token` input parameters.
+
+      skip_check_run: # optional
+# If this value is specified, the Test Results Report will be
+# attached as a version of a Gist under the name of this input.
+# The `gist_token` input is also required to use this feature.
+
+      gist_name: # optional
+# If specified, the Test Report Gist will also include an adjacent
+# badge rendered with the status of the associated Test Report and
+# and label content of this input.  In addition to any static text
+# you can provide _escape tokens_ of the form `%name%` where name
+# can be the name of any field returned from a Pester Result, such
+# as `ExecutedAt` or `Result`.  If you want a literal percent, just
+# specify an empty name as in `%%`.
+
+      gist_badge_label: # optional
+# If Gist badge generation is enabled by providing a value for the
+# `gist_badge_label` input, this input allows you to override the
+# default message on the badge, which is equivalent to the the
+# Pester Result `Status` such as `Failed` or `Passed`.  As with the
+# label input, you can specify escape tokens in addition to literal
+# text.  See the label input description for more details.
+
+      gist_badge_message: # optional
+# If true, will create the Tests Results Gist will be created as a
+# _secret_ Gist, otherwise it will be created as a public Gist.
+# Secret Gists can be changed to public, but public Gists cannot be
+# change to secret.  More details can be found
+# [here](https://docs.github.com/en/github/writing-on-github/creating-gists#about-gists).
+
+      gist_is_secret: # optional
+# GitHub OAuth/PAT token to be used for accessing Gist to store
+# test results report. The integrated GITHUB_TOKEN that is normally
+# accessible during a Workflow does not include read/write permissions
+# to associated Gists, therefore a separate token is needed.
+# You can control which account is used to actually store the state by
+# generating a token associated with the target account.
+
+      gist_token: # optional
+# If set to true, GitHub check status will be set to 'failure' 
+# if at least one test fails. If all tests pass then check status will 
+# be set to 'success'.
+
+      set_check_status_from_test_outcome: # optional
+# If specified, will override the default XSL transformation stylesheet
+# used to convert TRX input file to a Markdown report.
+
+      trx_xsl_path: # optional
+# Useful for passing extra parameters to dotnet test. Eg,
+#'--filter category=unit'
+
+      extra_test_parameters: # optional
+# If set to true, the build will fail if at least one test fails      
+
+      fail_build_on_failed_tests: # optional
+          
