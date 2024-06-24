@@ -1,4 +1,6 @@
 services:
+
+# tracking service
   tracking:
     container_name: tracking
     build:
@@ -19,6 +21,7 @@ services:
     networks: 
       - ui
 
+# pricing service
   pricing:
     container_name: pricing
     build:
@@ -29,6 +32,7 @@ services:
     networks:
       - ui
 
+# infrastructure
   zookeeper:
     container_name: zookeeper
     image: confluentinc/cp-zookeeper:latest
@@ -53,6 +57,7 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
+# tools
   kafka-manager:
     container_name: kafka-manager
     image: kafkamanager/kafka-manager
@@ -90,4 +95,4 @@ networks:
 
 volumes:
   tracking-persistency:
-    driver: local  
+    driver: local
