@@ -41,7 +41,8 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - '2181:2181'
-
+    networks:
+      - infrastructure
   kafka:
     container_name: kafka
     image: confluentinc/cp-kafka:latest
@@ -49,6 +50,8 @@ services:
       - zookeeper
     ports:
       - '9092:9092'
+    networks:
+      - infrastructure
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -67,7 +70,10 @@ services:
       - zookeeper
     environment:
       ZK_HOSTS: zookeeper:2181
-    
+    networks:
+      - tools
+      - infrastructure
+
   kafka-magic:
     container_name: kafka-magic
     image: digitsy/kafka-magic
@@ -75,6 +81,9 @@ services:
       - '8012:80'
     depends_on:
       - zookeeper
+    networks:
+      - tools
+      - infrastructure
 
   kafka-ui:
     container_name: kafka-ui
@@ -83,7 +92,10 @@ services:
       - 8013:8080
     environment:
         DYNAMIC_CONFIG_ENABLED: 'true'
-        
+    networks:
+      - tools
+      - infrastructure
+
 networks:
   pest:
     driver: bridge
@@ -92,7 +104,16 @@ networks:
     ipam:
       config:
         - subnet: "10.10.0.0/24"
-
+  tools:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.20.0.0/24"
+  infrastructure:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.100.0.0/24"
 volumes:
   tracking-persistency:
     driver: local
