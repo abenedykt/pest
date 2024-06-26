@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\pest.pricing\pest.pricing.csproj" />
     <ProjectReference Include="..\..\src\pest.tracking\pest.tracking.csproj" />
   </ItemGroup>
 
