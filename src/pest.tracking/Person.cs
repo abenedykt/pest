@@ -9,16 +9,6 @@ public class Person{
 
     public string Name { get; }
     public string Surname { get; }
-}
 
-
-public class OtherPerson{
-    public OtherPerson(string name, string surname)
-    {
-        Name = name;
-        Surname = surname;
-    }
-
-    public string Name { get; }
-    public string Surname { get; }
+    override public string ToString() => $"{Name} {Surname}".Trim();
 }

@@ -52,4 +52,11 @@ public class UnitTest1
         Assert.Equal("Miguel", x.Name);
         Assert.Equal("Camba", x.Surname);
     }
+
+    [Fact]
+    public void ToString_returns_name_and_surname()
+    {
+        var x = new Person("Miguel", "Camba");
+        Assert.Equal("Miguel Camba", x.ToString());
+    }
 }
