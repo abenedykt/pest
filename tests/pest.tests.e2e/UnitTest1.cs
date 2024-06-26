@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using DotNet.Testcontainers.Builders;
+using pest.examples;
 
 namespace pest.tests.e2e;
 
@@ -42,5 +43,13 @@ public class UnitTest1
     [Fact]
     public void Spin_up_testcontainer_with_kafka(){
         
+    }
+
+        [Fact]
+    public void Test1()
+    {
+        var x = new Person("Miguel", "Camba");
+        Assert.Equal("Miguel", x.Name);
+        Assert.Equal("Camba", x.Surname);
     }
 }
