@@ -1,14 +1,9 @@
-namespace pest.examples;
+namespace pest.tracking;
 
-public class Person{
-    public Person(string name, string surname)
-    {
-        Name = name;
-        Surname = surname;
-    }
+public class Person(string name, string surname)
+{
+    public string Name { get; } = name;
+    public string Surname { get; } = surname;
 
-    public string Name { get; }
-    public string Surname { get; }
-
-    override public string ToString() => $"{Name} {Surname}".Trim();
+    public override string ToString() => $"{Name} {Surname}".Trim();
 }
