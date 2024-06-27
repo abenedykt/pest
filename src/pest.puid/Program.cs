@@ -9,3 +9,5 @@ var app = builder.Build();
 app.MapGet("/", () => new IdGenerator(0).CreateId()).WithOpenApi();
 
 app.Run();
+    
+public partial class Program { }
