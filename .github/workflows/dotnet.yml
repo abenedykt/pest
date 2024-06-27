@@ -61,7 +61,4 @@ jobs:
     - name: Create commit comment
       uses: peter-evans/commit-comment@v3
       with:
-        body: |
-          This is a multi-line test comment
-          - With GitHub **Markdown** :sparkles:
-
+        body-path: code-coverage-results.md
