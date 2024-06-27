@@ -57,8 +57,3 @@ jobs:
       uses: coverallsapp/github-action@v2
       with:
         files: 'coverage/*/coverage.cobertura.xml'
-
-    - name: Comment commit
-      uses: dext7r/commit-comment@v1.1.0
-      with:
-        body: $GITHUB_STEP_SUMMARY
