@@ -1,6 +1,0 @@
-@pest.puid_HostAddress = http://localhost:5247
-
-GET {{pest.puid_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

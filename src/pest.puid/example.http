@@ -1,0 +1,8 @@
+@pest.puid_HostAddress = http://localhost:5247
+
+
+### generate new pest unique identifier
+GET {{pest.puid_HostAddress}}/
+Accept: application/json
+
+cd 
