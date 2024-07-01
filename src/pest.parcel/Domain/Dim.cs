@@ -19,37 +19,22 @@ public class Dim
         {
             return new Dim(first.Value + other.Value, first.Unit);
         }
-        
-        if(first.Unit == MeasurementUnit.Meter && other.Unit == MeasurementUnit.Centimeter)
+
+        if (Conversion.TryGetValue((first.Unit, other.Unit), out var convert))
         {
-            return new Dim(first.Value + other.Value / 100, MeasurementUnit.Meter);
+            return new Dim(convert(first.Value, other.Value), first.Unit);
         }
 
-        if (first.Unit == MeasurementUnit.Centimeter && other.Unit == MeasurementUnit.Meter)
-        {
-            return new Dim(first.Value + other.Value * 100, MeasurementUnit.Centimeter);
-        }
-        
-        if(first.Unit == MeasurementUnit.Inch && other.Unit == MeasurementUnit.Meter)
-        {
-            return new Dim(first.Value + other.Value * 39.37007874015748, MeasurementUnit.Inch);
-        }
-        
-        if(first.Unit == MeasurementUnit.Meter && other.Unit == MeasurementUnit.Inch)
-        {
-            return new Dim(first.Value + other.Value / 39.37007874015748, MeasurementUnit.Meter);
-        }
-        
-        if(first.Unit == MeasurementUnit.Centimeter && other.Unit == MeasurementUnit.Inch)
-        {
-            return new Dim(first.Value + other.Value * 2.54, MeasurementUnit.Centimeter);
-        }
-        
-        if(first.Unit == MeasurementUnit.Inch && other.Unit == MeasurementUnit.Centimeter)
-        {
-            return new Dim(first.Value + other.Value / 2.54, MeasurementUnit.Inch);
-        }
-        
         throw new ArgumentException("Cannot add dimensions with given units");
     }
+    
+    private static readonly Dictionary<(MeasurementUnit, MeasurementUnit), Func<double, double, double>> Conversion = new()
+    {
+        { (MeasurementUnit.Meter, MeasurementUnit.Centimeter), (first, other) => first + other / 100 },
+        { (MeasurementUnit.Centimeter, MeasurementUnit.Meter), (first, other) => first + other * 100 },
+        { (MeasurementUnit.Inch, MeasurementUnit.Meter), (first, other) => first + other * 39.37007874015748 },
+        { (MeasurementUnit.Meter, MeasurementUnit.Inch), (first, other) => first + other / 39.37007874015748 },
+        { (MeasurementUnit.Centimeter, MeasurementUnit.Inch), (first, other) => first + other * 2.54 },
+        { (MeasurementUnit.Inch, MeasurementUnit.Centimeter), (first, other) => first + other / 2.54 }
+    };
 }
