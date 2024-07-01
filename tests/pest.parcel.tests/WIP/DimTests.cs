@@ -1,6 +1,7 @@
 using FluentAssertions;
+using Pest.Parcel.Domain;
 
-namespace pest.parcel.tests;
+namespace Pest.Parcel.Tests.WIP;
 
 public class DimTests
 {

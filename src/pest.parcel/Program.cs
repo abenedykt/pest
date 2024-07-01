@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,7 +22,10 @@ app.MapPost("/create", () => "📦")
 
 app.Run();
 
-public partial class Program
+namespace Pest.Parcel
 {
-    // needed for the sake of running pest.parcel.tests using TestWebApplicationFactory
+    public partial class Program
+    {
+        // needed for the sake of running pest.parcel.tests using TestWebApplicationFactory
+    }
 }

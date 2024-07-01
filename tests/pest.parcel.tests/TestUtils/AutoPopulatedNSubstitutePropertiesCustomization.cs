@@ -4,7 +4,7 @@ using AutoFixture.AutoNSubstitute;
 using AutoFixture.Kernel;
 using MethodInvoker = AutoFixture.Kernel.MethodInvoker;
 
-namespace pest.parcel.tests;
+namespace Pest.Parcel.Tests.TestUtils;
 
 internal class AutoPopulatedNSubstitutePropertiesCustomization
     : ICustomization
