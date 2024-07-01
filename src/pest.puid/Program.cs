@@ -2,11 +2,12 @@ using IdGen;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddSingleton<IIdGenerator<long>>(new IdGenerator(0));
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-app.MapGet("/", () => new IdGenerator(0).CreateId()).WithOpenApi();
+app.MapGet("/", (IIdGenerator<long> g) => g.CreateId()).WithOpenApi();
 
 app.Run();
     
