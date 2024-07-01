@@ -1,4 +1,4 @@
-namespace pest.parcel.tests;
+namespace Pest.Parcel.Domain;
 
 public class Dimensions
 {

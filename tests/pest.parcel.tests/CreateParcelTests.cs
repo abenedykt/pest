@@ -1,7 +1,8 @@
 using System.Net;
 using FluentAssertions;
+using Pest.Parcel.Tests.TestUtils;
 
-namespace pest.parcel.tests;
+namespace Pest.Parcel.Tests;
 
 public class CreateParcelTests
 {

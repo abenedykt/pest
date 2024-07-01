@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Hosting;
 
-namespace pest.parcel.tests;
+namespace Pest.Parcel.Tests.TestUtils;
 
 public class TestWebApplicationFactory<TProgram>() : WebApplicationFactory<TProgram> where TProgram : class
 {
