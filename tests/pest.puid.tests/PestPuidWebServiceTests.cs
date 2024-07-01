@@ -9,7 +9,7 @@ namespace pest.puid.tests;
 public class PestPuidWebServiceTests
 {
     [Theory, AutoData]
-    public async void Simple_get_should_return_not_null_identifier(long testIdentifier)
+    public async void Get_returns_newly_generated_identifier(long testIdentifier)
     {
         var app = CreateMockedApp(testIdentifier);
         var client = app.CreateClient();

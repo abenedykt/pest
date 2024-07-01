@@ -5,35 +5,21 @@ using Microsoft.Extensions.Hosting;
 
 namespace pest.puid.tests;
 
-public class TestWebApplicationFactory<TProgram>(IIdGenerator<long> idGenerator) : WebApplicationFactory<TProgram> where TProgram : class
+public class TestWebApplicationFactory<TProgram>(IIdGenerator<long>? idGenerator) : WebApplicationFactory<TProgram> where TProgram : class
 {
     protected override IHost CreateHost(IHostBuilder builder)
     {
         builder.ConfigureServices(services =>
         {
-            if(idGenerator != null)
-            {
-                var descriptor = services.SingleOrDefault(s => s.ServiceType == typeof(IIdGenerator<long>));
-                if (descriptor != null)
-                {
-                    services.Remove(descriptor);
-                }
-                
-                services.AddSingleton(idGenerator);
-            }
+            if (idGenerator == null) return;
             
-            //     var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TodoGroupDbContext>));
-            //
-            //     if (descriptor != null)
-            //     {
-            //         services.Remove(descriptor);
-            //     }
-            //
-            //     services.AddDbContext<TodoGroupDbContext>(options =>
-            //     {
-            //         var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            //         options.UseSqlite($"Data Source={Path.Join(path, "WebMinRouteGroup_tests.db")}");
-            //     });
+            var descriptor = services.SingleOrDefault(s => s.ServiceType == typeof(IIdGenerator<long>));
+            if (descriptor != null)
+            {
+                services.Remove(descriptor);
+            }
+                
+            services.AddSingleton(idGenerator);
         });
 
         return base.CreateHost(builder);
