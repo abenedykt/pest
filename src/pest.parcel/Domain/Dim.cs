@@ -19,10 +19,37 @@ public class Dim
         {
             return new Dim(first.Value + other.Value, first.Unit);
         }
+        
+        if(first.Unit == MeasurementUnit.Meter && other.Unit == MeasurementUnit.Centimeter)
+        {
+            return new Dim(first.Value + other.Value / 100, MeasurementUnit.Meter);
+        }
 
-
-
-        throw new NotImplementedException();
+        if (first.Unit == MeasurementUnit.Centimeter && other.Unit == MeasurementUnit.Meter)
+        {
+            return new Dim(first.Value + other.Value * 100, MeasurementUnit.Centimeter);
+        }
+        
+        if(first.Unit == MeasurementUnit.Inch && other.Unit == MeasurementUnit.Meter)
+        {
+            return new Dim(first.Value + other.Value * 39.37007874015748, MeasurementUnit.Inch);
+        }
+        
+        if(first.Unit == MeasurementUnit.Meter && other.Unit == MeasurementUnit.Inch)
+        {
+            return new Dim(first.Value + other.Value / 39.37007874015748, MeasurementUnit.Meter);
+        }
+        
+        if(first.Unit == MeasurementUnit.Centimeter && other.Unit == MeasurementUnit.Inch)
+        {
+            return new Dim(first.Value + other.Value * 2.54, MeasurementUnit.Centimeter);
+        }
+        
+        if(first.Unit == MeasurementUnit.Inch && other.Unit == MeasurementUnit.Centimeter)
+        {
+            return new Dim(first.Value + other.Value / 2.54, MeasurementUnit.Inch);
+        }
+        
+        throw new ArgumentException("Cannot add dimensions with given units");
     }
-    
 }
