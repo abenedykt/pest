@@ -1,6 +1,10 @@
 @pest.parcel_HostAddress = http://localhost:5191
 
-GET {{pest.parcel_HostAddress}}/weatherforecast/
+### create new parcel
+POST {{pest.parcel_HostAddress}}/create/
 Accept: application/json
 
-###
+{
+
+}
+
