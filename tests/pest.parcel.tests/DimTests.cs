@@ -29,12 +29,14 @@ public class DimTests
     // [Fact]
     // public void When_dim_of_different_units_are_added_result_is_in_meter()
     // {
-    //     Dim dim1 = new Dim { Unit = MeasurementUnit.Meter, Value = 1 };
-    //     Dim dim2 = new Dim { Unit = MeasurementUnit.Centimeter, Value = 100 };
+    //     var dim1 = new Dim(1);
+    //     var dim2 = new Dim(100, MeasurementUnit.Centimeter);
     //
     //     Dim result = dim1 + dim2;
     //
     //     result.Unit.Should().Be(MeasurementUnit.Meter);
     //     result.Value.Should().Be(2);
     // }
+    
+    
 }

@@ -2,7 +2,7 @@ namespace pest.parcel.tests;
 
 public class Dim
 {
-    public Dim(long value, MeasurementUnit unit = MeasurementUnit.Meter)
+    public Dim(double value, MeasurementUnit unit = MeasurementUnit.Meter)
     {
         if (value <= 0)
             throw new ArgumentException("Value cannot be negative or zero");
@@ -12,4 +12,17 @@ public class Dim
     
     public MeasurementUnit Unit { get; }
     public double Value { get; }
+
+    public static Dim operator +(Dim first, Dim other)
+    {
+        if (first.Unit == other.Unit)
+        {
+            return new Dim(first.Value + other.Value, first.Unit);
+        }
+
+
+
+        throw new NotImplementedException();
+    }
+    
 }
