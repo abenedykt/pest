@@ -1,10 +1,13 @@
+using Pest.Parcel;
+using Pest.Parcel.Extenstions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddMinimalEndpoints();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -15,10 +18,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapPost("/create", () => "📦")
-    .WithName("Create")
-    .WithOpenApi();
+app.RegisterMinimalEndpoints();
 
 app.Run();
 
@@ -29,3 +29,4 @@ namespace Pest.Parcel
         // needed for the sake of running pest.parcel.tests using TestWebApplicationFactory
     }
 }
+
