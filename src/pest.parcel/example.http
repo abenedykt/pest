@@ -1,0 +1,25 @@
+@pest.parcel_HostAddress = http://localhost:5191
+
+### create new parcel
+POST {{pest.parcel_HostAddress}}/create/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "sender": {
+    "name" : "Jane Doe",
+    "address" : "456 Main",
+    "city" : "Springfield",
+    "country" : "USA",
+    "postalCode" :"12345"
+  },
+  "recipient": {
+    "name" : "Jane Doe",
+    "address" : "456 Main",
+    "city" : "Springfield",
+    "country" : "USA",
+    "postalCode" :"12345"
+  },
+  "class": 0
+}
+
