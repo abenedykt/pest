@@ -9,7 +9,7 @@ public class ParcelIdTest
     [Fact]
     public void When_parcel_id_is_created_with_value_greater_than_zero_it_has_value()
     {
-        var parcelId = (ParcelId)1;
+        ParcelId parcelId = 1;
         Assert.True(parcelId.HasValue);
     }
 
