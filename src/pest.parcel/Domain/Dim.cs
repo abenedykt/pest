@@ -30,11 +30,15 @@ public class Dim
     
     private static readonly Dictionary<(MeasurementUnit, MeasurementUnit), Func<double, double, double>> Conversion = new()
     {
-        { (MeasurementUnit.Meter, MeasurementUnit.Centimeter), (first, other) => first + other / 100 },
-        { (MeasurementUnit.Centimeter, MeasurementUnit.Meter), (first, other) => first + other * 100 },
-        { (MeasurementUnit.Inch, MeasurementUnit.Meter), (first, other) => first + other * 39.37007874015748 },
-        { (MeasurementUnit.Meter, MeasurementUnit.Inch), (first, other) => first + other / 39.37007874015748 },
-        { (MeasurementUnit.Centimeter, MeasurementUnit.Inch), (first, other) => first + other * 2.54 },
-        { (MeasurementUnit.Inch, MeasurementUnit.Centimeter), (first, other) => first + other / 2.54 }
+        { (MeasurementUnit.Meter, MeasurementUnit.Centimeter), (first, second) => first + second / MeterToCm },
+        { (MeasurementUnit.Centimeter, MeasurementUnit.Meter), (first, second) => first + second * MeterToCm },
+        { (MeasurementUnit.Inch, MeasurementUnit.Meter), (first, second) => first + second * InchToMeter },
+        { (MeasurementUnit.Meter, MeasurementUnit.Inch), (first, second) => first + second / InchToMeter },
+        { (MeasurementUnit.Centimeter, MeasurementUnit.Inch), (first, second) => first + second * InchToCm },
+        { (MeasurementUnit.Inch, MeasurementUnit.Centimeter), (first, second) => first + second / InchToCm }
     };
+    
+    private const double MeterToCm = 100;
+    private const double InchToMeter = 39.37007874015748;
+    private const double InchToCm = 2.54;
 }
