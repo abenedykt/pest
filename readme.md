@@ -3,7 +3,3 @@
 
 
 
-**adr:**
-
-[adr1](adr/adr1.md)
-[adr2](adr/adr2.md)
