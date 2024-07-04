@@ -2,6 +2,9 @@ All code in this project has one and only one purpose - demoing multiple concept
 It is not production ready by any means. If you find it useful, awesome. Just bear in mind, it is *just 
 a sandbox* for multiple concepts. 
 
+# Random notes
+* [Why there is no full-blown CI/CD pipeline?](notes/cicd_pipeline.md)
+
 
 # Architecture Decision Records
 
