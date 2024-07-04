@@ -1,3 +1,8 @@
 remote_theme: pages-themes/cayman@v0.2.0
 plugins:
   - jekyll-remote-theme # add this line to the plugins list if you already have one
+    
+title: PEST - Parcel Experimental Sandbox Tool
+description: Sole purpose of this project is to have a playground for showing different concepts and ideas in a simple way. No production code, just multiple concepts and ideas.
+
+show_downloads: false
