@@ -6,3 +6,4 @@ a sandbox* for multiple concepts.
 # Architecture Decision Records
 
 * [Use of one service for all ID generation](adr/2024-06-01.md)
+* [Use of event driven architecture and Kafka](adr/2024-06-01-2.md)
