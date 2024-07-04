@@ -4,7 +4,7 @@
 
 ## Hot to run
 1. Clone the repository
-2. Install [🐳docker](https://www.docker.com/)
+2. Install 🐳 Docker
     
     You will need *docker-compose* so depending on wether you're installing Docker Desktop or just cli you might need to install it separately. Refere to docker installation guid for details.
 3. Open terminal and run:
@@ -14,4 +14,5 @@
 ```
 
 This should build and spin up the project(s). Also it should open a simple webage with links to all the services and tools. 
+
 
