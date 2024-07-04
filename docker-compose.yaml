@@ -11,6 +11,17 @@ services:
       networks:
         - ui
 
+# parcel service
+  parcel:
+    container_name: parcel
+    build:
+      context: ./src/pest.parcel
+      dockerfile: dockerfile
+    ports:
+      - 8003:8080
+    networks:
+      - ui
+        
 # tracking service
   tracking:
     container_name: tracking

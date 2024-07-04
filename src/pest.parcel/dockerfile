@@ -6,7 +6,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copy the project file and restore dependencies
-COPY pest.pricing.csproj .
+COPY pest.parcel.csproj .
 RUN dotnet restore
 
 # Copy the source code
@@ -26,4 +26,4 @@ EXPOSE 8080
 COPY --from=build /app/out .
 
 # Set the entry point
-ENTRYPOINT ["dotnet", "pest.pricing.dll"]
+ENTRYPOINT ["dotnet", "pest.parcel.dll"]
