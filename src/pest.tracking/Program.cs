@@ -23,7 +23,7 @@ app.UseHttpsRedirection();
 
 var summaries = new[]
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+    "zimno", "Bracing", "Chilly", "spoko", "Mild", "ciepło", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
 app.MapHealthChecks("/health", new HealthCheckOptions()
