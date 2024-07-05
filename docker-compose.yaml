@@ -82,6 +82,18 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    networks:
+      - infrastructure
+    environment:
+      POSTGRES_USER: pest
+      POSTGRES_PASSWORD: pest
+      POSTGRES_DB: pest
+
 # tools
   kafka-manager:
     container_name: kafka-manager
@@ -118,6 +130,18 @@ services:
       - tools
       - infrastructure
 
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - '8014:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pest@pest.com
+      PGADMIN_DEFAULT_PASSWORD: pest
+    networks:
+      - tools
+      - infrastructure
+      
 networks:
   pest:
     driver: bridge
