@@ -1,5 +1,7 @@
+using FluentValidation;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Pest.Parcel.Endpoints;
 using Pest.Parcel.Extenstions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,11 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
-
 builder.Services.AddMinimalEndpoints();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddTransient<IOutbox, Outbox>();
 
 var app = builder.Build();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -24,12 +26,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.RegisterMinimalEndpoints();
-
-app.MapHealthChecks("/health", new HealthCheckOptions
-{
-    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-});
-
+app.MapHealthChecks("/health", new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse });
 app.Run();
 
 namespace Pest.Parcel
@@ -39,4 +36,3 @@ namespace Pest.Parcel
         // needed for the sake of running pest.parcel.tests using TestWebApplicationFactory
     }
 }
-
