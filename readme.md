@@ -1,5 +1,5 @@
 [![.NET](https://github.com/abenedykt/pest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/abenedykt/pest/actions/workflows/dotnet.yml) [![Coverage Status](https://coveralls.io/repos/github/abenedykt/pest/badge.svg?branch=main)](https://coveralls.io/github/abenedykt/pest?branch=main)
-
+[![codecov](https://codecov.io/github/abenedykt/pest/graph/badge.svg?token=R46YRCXS33)](https://codecov.io/github/abenedykt/pest)
 📖 [Documentation and project notes](https://abenedykt.github.io/pest)
 
 ## Hot to run
