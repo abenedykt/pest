@@ -7,7 +7,7 @@ Accept: application/json
 
 {
   "sender": {
-    "name" : "Michael Doe",
+    "name" : "George Doe",
     "address" : "456 Main",
     "city" : "Springfield",
     "country" : "USA",
