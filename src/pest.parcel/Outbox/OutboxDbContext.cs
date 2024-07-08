@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Pest.Parcel;
+
+namespace Pest.Parcel.Outbox;
 
 public class OutboxDbContext : DbContext
 {

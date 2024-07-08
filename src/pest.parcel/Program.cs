@@ -3,6 +3,7 @@ using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Pest.Parcel.Endpoints;
 using Pest.Parcel.Extenstions;
+using Pest.Parcel.Outbox;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,8 @@ builder.Services.AddMinimalEndpoints();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddTransient<IOutbox, Outbox>();
 builder.Services.AddDbContext<OutboxDbContext>();
+builder.Services.AddHostedService<Worker>();
+
 
 var app = builder.Build();
 

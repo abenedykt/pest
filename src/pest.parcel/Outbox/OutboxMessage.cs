@@ -1,4 +1,4 @@
-namespace Pest.Parcel;
+namespace Pest.Parcel.Outbox;
 
 public class OutboxMessage
 {

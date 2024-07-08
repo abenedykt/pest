@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Pest.Parcel.Outbox;
 
 namespace Pest.Parcel.Endpoints;
 
