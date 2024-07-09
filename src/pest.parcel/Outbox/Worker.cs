@@ -16,7 +16,6 @@ public class Worker : BackgroundService
         _log = log;
         _dbContext = dbContext;
         
-        
         var config = new ProducerConfig { 
             BootstrapServers = "localhost:9092" 
         };
@@ -32,31 +31,37 @@ public class Worker : BackgroundService
             _log.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
             await ProcessOutbox();
-            await Task.Delay(1000, stoppingToken);
+            await Task.Delay(10000, stoppingToken);
         }
     }
 
     private async Task ProcessOutbox()
     {
-        var letters = _dbContext.Messages.Take(100);
+        var letter = _dbContext.Messages.FirstOrDefault();
 
-        foreach (var letter in letters)
+        if (letter is not null)
         {
-            // lets stay super optimistic for the sake of readability
-            
-            await PublishToKafka(letter.Data);
+            _log.LogInformation("Found a letter in the outbox. Publishing to Kafka.");
+            PublishToKafka(letter.Data);
             _dbContext.Messages.Remove(letter);
-           
+            var impacted = await _dbContext.SaveChangesAsync();
+            _log.LogInformation("removed {impacted} letter from the outbox.",impacted); 
         }
         
-        await _dbContext.SaveChangesAsync(); // <- efficiency vs idempotency (what about worker scaling)
     }
 
-    private async Task PublishToKafka(string letterData)
+    private  void PublishToKafka(string letterData)
     {
-        await _producer.ProduceAsync(ParcelEventsTopic, new Message<Null, string>
+        try
         {
-            Value = letterData
-        });
+            _producer.Produce(ParcelEventsTopic, new Message<Null, string>
+            {
+                Value = letterData
+            });
+        }
+        catch (Exception e)
+        {
+            _log.LogDebug(e.Message);
+        }
     }
 }

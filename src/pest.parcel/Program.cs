@@ -1,6 +1,7 @@
 using FluentValidation;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using Pest.Parcel.Endpoints;
 using Pest.Parcel.Extenstions;
 using Pest.Parcel.Outbox;
@@ -31,6 +32,21 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.RegisterMinimalEndpoints();
 app.MapHealthChecks("/health", new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse });
+
+
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<OutboxDbContext>();
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+    }
+}
+
 app.Run();
 
 namespace Pest.Parcel
