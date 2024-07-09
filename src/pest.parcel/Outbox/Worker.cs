@@ -17,7 +17,7 @@ public class Worker : BackgroundService
         _dbContext = dbContext;
         
         var config = new ProducerConfig { 
-            BootstrapServers = "localhost:9092" 
+            BootstrapServers = "kafka:9092" 
         };
         
         _producer = new ProducerBuilder<Null, string>(config)
@@ -31,7 +31,7 @@ public class Worker : BackgroundService
             _log.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
             await ProcessOutbox();
-            await Task.Delay(10000, stoppingToken);
+            await Task.Delay(1000, stoppingToken);
         }
     }
 

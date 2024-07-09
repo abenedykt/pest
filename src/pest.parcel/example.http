@@ -1,4 +1,4 @@
-@pest.parcel_HostAddress = http://localhost:5000
+@pest.parcel_HostAddress = http://localhost:8003
 
 ### create new parcel
 POST {{pest.parcel_HostAddress}}/create/

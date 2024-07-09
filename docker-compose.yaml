@@ -21,6 +21,7 @@ services:
       - 8003:8080
     networks:
       - ui
+      - infrastructure
         
 # tracking service
   tracking:
@@ -91,8 +92,8 @@ services:
       - infrastructure
     environment:
       POSTGRES_USER: pest
-      POSTGRES_PASSWORD: pest
-      POSTGRES_DB: pest
+      POSTGRES_PASSWORD: pest      
+      PGHOST: postgres
 
 # tools
   kafka-manager:
