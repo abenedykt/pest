@@ -7,6 +7,26 @@ public class TestWebApplicationFactory<TProgram>() : WebApplicationFactory<TProg
 {
     protected override IHost CreateHost(IHostBuilder builder)
     {
+        builder.ConfigureServices(services =>
+        {
+            // todo: mock kafka
+            // todo: mock repository
+            
+            
+            
+            
+            
+            // if (idGenerator == null) return;
+            //
+            // var descriptor = services.SingleOrDefault(s => s.ServiceType == typeof(IIdGenerator<long>));
+            // if (descriptor != null)
+            // {
+            //     services.Remove(descriptor);
+            // }
+            //     
+            // services.AddSingleton(idGenerator);
+        });
+
         return base.CreateHost(builder);
     }
 }

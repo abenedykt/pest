@@ -17,7 +17,7 @@ builder.Services.AddMinimalEndpoints();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddTransient<IOutbox, Outbox>();
 builder.Services.AddDbContext<OutboxDbContext>();
-builder.Services.AddHostedService<Worker>();
+builder.Services.AddHostedService<Worker>(); 
 
 
 var app = builder.Build();
@@ -34,16 +34,19 @@ app.RegisterMinimalEndpoints();
 app.MapHealthChecks("/health", new HealthCheckOptions { ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse });
 
 
-
-
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<OutboxDbContext>();
+    var log = services.GetRequiredService<ILogger<Program>>();
+    
+    log.LogInformation("Looking for pending database migrations.");
     if (context.Database.GetPendingMigrations().Any())
     {
+        log.LogInformation("Found! Applying...");
         context.Database.Migrate();
+        log.LogInformation("Migrations applied.");
     }
 }
 
