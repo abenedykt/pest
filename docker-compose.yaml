@@ -22,6 +22,9 @@ services:
     networks:
       - ui
       - infrastructure
+    depends_on:
+      - kafka
+      - postgres
         
 # tracking service
   tracking:
@@ -130,6 +133,8 @@ services:
     networks:
       - tools
       - infrastructure
+    depends_on:
+      - kafka
 
   pgadmin:
     container_name: pgadmin
@@ -142,6 +147,8 @@ services:
     networks:
       - tools
       - infrastructure
+    depends_on:
+      - postgres
       
 networks:
   pest:
