@@ -29,3 +29,18 @@ public class PestPuidWebServiceTests
         return new TestWebApplicationFactory<Program>(mockGenerator);
     }
 }
+
+public class experiemtns
+{
+    [Fact]
+    public async Task xxx()
+    {
+        var c = new HttpClient();
+        c.BaseAddress = new Uri("http://localhost:8010");
+        c.DefaultRequestHeaders.ConnectionClose = true;
+        
+        var result =  await c.GetStringAsync("/");
+        
+        
+    }
+}

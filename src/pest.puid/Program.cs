@@ -11,7 +11,7 @@ builder.Services.AddHealthChecks();
 var app = builder.Build();
 
 app.MapGet("/", (IIdGenerator<long> g) => g.CreateId()).WithOpenApi();
-app.MapHealthChecks("/health", new HealthCheckOptions()
+app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });

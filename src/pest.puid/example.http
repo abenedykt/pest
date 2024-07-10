@@ -1,4 +1,4 @@
-@pest.puid_HostAddress = http://localhost:5247
+@pest.puid_HostAddress = http://localhost:8010
 
 
 ### generate new pest unique identifier
