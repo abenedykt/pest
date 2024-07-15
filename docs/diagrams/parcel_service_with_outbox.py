@@ -10,19 +10,22 @@ with Diagram(show=show_image, direction="LR", filename="parcel_service_with_outb
 
     ingres =  Nginx("ingress")
 
-    with Cluster("PUID service"):
-        puid_service = ECS("puid")
-    
+
     
     with Cluster("Events"):
         event_bus = Kafka("Kafka")     
 
-    with Cluster("Parcel service"):         
-        parcel_service = ECS("REST API") 
-        outbox = DatabaseForPostgresqlServers("Outbox")
-        parcel_service >> [puid_service, outbox]
-        outbox_worker = ECS("Outbox Worker")
-        outbox >> outbox_worker
+    with Cluster("external"):
+        puid_service = ECS("PUID Serivece")
 
-    outbox_worker >> Edge(label = "publish") >> event_bus
+    with Cluster("Parcel service", direction="LR"):         
+        parcel_service = ECS("REST API") 
+        parcel_service >> Edge(label = "/GET", style="dotted") >> puid_service
+        outbox = DatabaseForPostgresqlServers("Persisted Outbox")
+        parcel_service >> Edge(style="bold", label="to outbox") >> outbox
+        outbox_worker = ECS("Outbox Worker")
+        outbox << Edge(style="bold", label="process") << outbox_worker
+
+    outbox_worker >> Edge(label = "publish", style="bold") >> event_bus
+
     ingres >> parcel_service
