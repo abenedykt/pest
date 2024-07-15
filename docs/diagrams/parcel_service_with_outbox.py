@@ -16,7 +16,7 @@ with Diagram(show=show_image, direction="LR", filename="parcel_service_with_outb
         event_bus = Kafka("Kafka")     
 
     with Cluster("external"):
-        puid_service = ECS("PUID Serivece")
+        puid_service = ECS("PUID Service")
 
     with Cluster("Parcel service", direction="LR"):         
         parcel_service = ECS("REST API") 
