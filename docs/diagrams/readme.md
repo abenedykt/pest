@@ -2,8 +2,13 @@ All diagrams here are created with [Diagrams](https://diagrams.mingrammer.com/).
 
 To update/generate diagrams simply run:
 
-``` bash
+```bash
 
+python <file_name.py> 
+```
+
+i.e.
+```bash
 python parcel_service_with_outbox.py
 ```
 
