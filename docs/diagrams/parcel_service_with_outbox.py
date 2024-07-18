@@ -15,11 +15,9 @@ with Diagram(show=show_image, direction="LR", filename="parcel_service_with_outb
         puid_service = ECS("PUID Service")
         event_bus = Kafka("Kafka") 
 
-    with SystemBoundary("Parcel Service"):
+    ingres =  Nginx("ingress")
 
-        ingres =  Nginx("ingress")
-    
-    
+    with SystemBoundary("Parcel Service"):
 
         with Cluster("Parcel service", direction="LR"):         
             parcel_service = ECS("REST API") 
