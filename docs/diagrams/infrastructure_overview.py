@@ -3,8 +3,12 @@ from diagrams.aws.compute import ECS
 from diagrams.onprem.queue import Kafka
 from diagrams.elastic.agent import Integrations
 from diagrams.onprem.monitoring import Grafana
+import sys
 
-show_image = False
+if len(sys.argv) > 1 and sys.argv[1] == "--no-show":
+    show_image = False
+else:
+    show_image = True
 
 def edge_persistency():
     return Edge(style="dotted")
