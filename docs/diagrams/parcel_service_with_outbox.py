@@ -8,21 +8,17 @@ from diagrams.c4 import SystemBoundary
 
 show_image = True
 
-graph_attr = {
-    "splines": "spline"
-}
-
-with Diagram(show=show_image, direction="LR", filename="parcel_service_with_outbox", outformat="png" , graph_attr=graph_attr):
+with Diagram(show=show_image, direction="LR", filename="parcel_service_with_outbox", outformat="png"):
 
     with SystemBoundary("External"):
         puid_service = ECS("PUID Service")
-            
+        event_bus = Kafka("Kafka") 
+
     with SystemBoundary("Parcel Service"):
 
         ingres =  Nginx("ingress")
     
-        with Cluster("Events"):
-            event_bus = Kafka("Kafka")     
+    
 
         with Cluster("Parcel service", direction="LR"):         
             parcel_service = ECS("REST API") 
