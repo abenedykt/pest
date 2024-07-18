@@ -3,13 +3,9 @@ from diagrams.aws.compute import ECS
 from diagrams.onprem.queue import Kafka
 from diagrams.elastic.agent import Integrations
 from diagrams.onprem.monitoring import Grafana
-import sys
+from tools.DiagramTools import based_on_params
 
-if len(sys.argv) > 1 and sys.argv[1] == "--no-show":
-    show_image = False
-else:
-    show_image = True
-
+show_image = based_on_params()
 def edge_persistency():
     return Edge(style="dotted")
 

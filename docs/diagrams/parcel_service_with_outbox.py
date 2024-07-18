@@ -1,16 +1,12 @@
-import sys
 from diagrams import Cluster, Diagram, Edge
 from diagrams.aws.compute import ECS
 from diagrams.onprem.queue import Kafka
 from diagrams.onprem.network import Nginx
 from diagrams.azure.database import DatabaseForPostgresqlServers
 from diagrams.c4 import SystemBoundary
+from tools.DiagramTools import based_on_params
 
-
-if len(sys.argv) > 1 and sys.argv[1] == "--no-show":
-    show_image = False
-else:
-    show_image = True
+show_image = based_on_params()
 
 
 with Diagram(show=show_image, direction="LR", filename="parcel_service_with_outbox", outformat="png"):
