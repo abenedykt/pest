@@ -15,3 +15,6 @@ python parcel_service_with_outbox.py
 
 ## Parcel Service with outbox pattern
 ![diagram of a parcel service with outbox pattern](parcel_service_with_outbox.png)
+
+## Infrastructure overview
+![infrastructure overview](infrastructure_overview.png)
