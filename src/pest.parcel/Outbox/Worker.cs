@@ -5,22 +5,27 @@ namespace Pest.Parcel.Outbox;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _log;
-    private readonly OutboxDbContext _dbContext;
-    private readonly IProducer<Null,string> _producer;
+    private readonly IOutboxRepository _outboxRepository;
 
-    
+    private readonly IProducer<Null,string> _kafkaProducer;
+
     private const string ParcelEventsTopic = "parcel_events";
     
-    public Worker(ILogger<Worker> log, OutboxDbContext dbContext)
+    public Worker(ILogger<Worker> log, IOutboxRepository outboxRepository)
     {
         _log = log;
-        _dbContext = dbContext;
+        _outboxRepository = outboxRepository;
         
+        _kafkaProducer = CreateKafkaProducer();
+    }
+
+    private IProducer<Null, string> CreateKafkaProducer()
+    {
         var config = new ProducerConfig { 
             BootstrapServers = "kafka:9092" 
         };
-        
-        _producer = new ProducerBuilder<Null, string>(config)
+
+        return  new ProducerBuilder<Null, string>(config)
             .Build();
     }
 
@@ -29,23 +34,20 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _log.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-
             await ProcessOutbox();
-            await Task.Delay(1000, stoppingToken);
         }
     }
 
     private async Task ProcessOutbox()
     {
-        var letter = _dbContext.Messages.FirstOrDefault();
+        var letter = await _outboxRepository.GetFirstMessage();
 
         if (letter is not null)
         {
             _log.LogInformation("Found a letter in the outbox. Publishing to Kafka.");
             PublishToKafka(letter.Data);
-            _dbContext.Messages.Remove(letter);
-            var impacted = await _dbContext.SaveChangesAsync();
-            _log.LogInformation("removed {impacted} letter from the outbox.",impacted); 
+            await _outboxRepository.Remove(letter);
+            _log.LogInformation("removed {letter} letter from the outbox.",letter.Id); 
         }
         
     }
@@ -54,7 +56,7 @@ public class Worker : BackgroundService
     {
         try
         {
-            _producer.Produce(ParcelEventsTopic, new Message<Null, string>
+            _kafkaProducer.Produce(ParcelEventsTopic, new Message<Null, string>
             {
                 Value = letterData
             });

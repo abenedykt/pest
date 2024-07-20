@@ -44,6 +44,7 @@ app.MapGet("/weatherforecast", async (Kernel ai) =>
         var temp = Random.Shared.Next(-20, 45);
         var text = await ai.InvokePromptAsync<string>($"Short weather description for {temp} degrees Celsius?");
         
+        
         return new WeatherForecast
         (
             DateOnly.FromDateTime(DateTime.Now),

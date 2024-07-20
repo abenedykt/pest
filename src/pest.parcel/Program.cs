@@ -17,6 +17,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 builder.Services.AddTransient<IOutbox, Outbox>();
 builder.Services.AddTransient<IPuidClient, PuidClient>();
+builder.Services.AddSingleton<IOutboxRepository, OutboxRepository>();
 builder.Services.AddDbContext<OutboxDbContext>();
 
 builder.Services.AddHostedService<Worker>(); // should be out of process. We want to run app and outbox separately
