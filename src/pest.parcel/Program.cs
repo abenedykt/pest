@@ -20,7 +20,12 @@ builder.Services.AddTransient<IPuidClient, PuidClient>();
 builder.Services.AddSingleton<IOutboxRepository, OutboxRepository>();
 builder.Services.AddDbContext<OutboxDbContext>();
 
-builder.Services.AddHostedService<Worker>(); // should be out of process. We want to run app and outbox separately
+builder.Services.AddHostedService<Worker>(); // should be out of process - left here only for purpose of PoC.
+                                             // We want to run app and outbox as separate process.
+                                             // things to consider:
+                                             //    - separate containers
+                                             //    - separate scalability
+                                             //    - separate deployment
 
 
 var app = builder.Build();
