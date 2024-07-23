@@ -30,7 +30,6 @@ builder.Services.AddHostedService<Worker>(); // should be out of process - left 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

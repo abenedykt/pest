@@ -6,6 +6,8 @@ services:
       build:
         context: ./src/pest.puid
         dockerfile: dockerfile
+      environment:
+        - ASPNETCORE_ENVIRONMENT=Development
       ports:
         - 8010:8080
       networks:
@@ -17,6 +19,8 @@ services:
     build:
       context: ./src/pest.parcel
       dockerfile: dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 8003:8080
     networks:
@@ -33,6 +37,8 @@ services:
     build:
       context: ./src/pest.tracking
       dockerfile: dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 8001:8080
     networks:
@@ -54,6 +60,8 @@ services:
     build:
       context: ./src/pest.pricing
       dockerfile: dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - 8002:8080
     networks:

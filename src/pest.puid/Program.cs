@@ -6,9 +6,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IIdGenerator<long>>(new IdGenerator(0));
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.MapGet("/", (IIdGenerator<long> g) => g.CreateId()).WithOpenApi();
 app.MapHealthChecks("/health", new HealthCheckOptions
