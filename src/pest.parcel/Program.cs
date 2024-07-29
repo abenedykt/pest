@@ -53,16 +53,26 @@ void AutoMigrateDatabase(WebApplication webApplication)
     using var scope = webApplication.Services.CreateScope();
     
     var services = scope.ServiceProvider;
-
-    var context = services.GetRequiredService<OutboxDbContext>();
     var log = services.GetRequiredService<ILogger<Program>>();
-    
-    log.LogInformation("Looking for pending database migrations.");
-    if (!context.Database.GetPendingMigrations().Any()) return;
-        
-    log.LogInformation("Found! Applying...");
-    context.Database.Migrate();
-    log.LogInformation("Migrations applied.");
+    try
+    {
+        var context = services.GetRequiredService<OutboxDbContext>();
+
+        log.LogInformation("Looking for pending database migrations.");
+        if (!context.Database.GetPendingMigrations().Any()) return;
+
+        log.LogInformation("Found! Applying...");
+        context.Database.Migrate();
+        log.LogInformation("Migrations applied.");
+    }
+    catch (InvalidOperationException e)
+    {
+        log.LogInformation(e, "Missing database provider. Skipping database migration.");
+    }
+    catch (Exception e)
+    {
+        log.LogError(e, "HELP!!! I'm lost here");
+    }
 }
 
 namespace Pest.Parcel
