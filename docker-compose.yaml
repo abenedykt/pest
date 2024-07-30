@@ -159,6 +159,20 @@ services:
     depends_on:
       - postgres
       
+      
+# logging
+  seq:
+    container_name: seq
+    image: datalust/seq:latest
+    ports:
+      - '8020:80'
+    environment:
+        ACCEPT_EULA: Y
+    networks:
+      - pest
+      - ui
+      - infrastructure
+
 networks:
   pest:
     driver: bridge

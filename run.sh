@@ -27,3 +27,7 @@ docker compose up -d
 
 # open startup.html that contains links to all the services and tools
 open startup.html
+
+# open page for seq
+
+open http://localhost:8020
