@@ -17,8 +17,8 @@ services:
   parcel:
     container_name: parcel
     build:
-      context: ./src/pest.parcel
-      dockerfile: dockerfile
+      context: ./src/
+      dockerfile: pest.parcel.dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:

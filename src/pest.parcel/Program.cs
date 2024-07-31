@@ -2,11 +2,15 @@ using FluentValidation;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
+using pest.logging;
 using Pest.Parcel.Endpoints;
 using Pest.Parcel.Extenstions;
 using Pest.Parcel.Outbox;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// logging
+builder.AddLogging();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
