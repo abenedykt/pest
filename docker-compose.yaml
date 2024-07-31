@@ -4,8 +4,8 @@ services:
   puid:
       container_name: puid
       build:
-        context: ./src/pest.puid
-        dockerfile: dockerfile
+        context: ./src/
+        dockerfile: pest.puid.dockerfile
       environment:
         - ASPNETCORE_ENVIRONMENT=Development
       ports:

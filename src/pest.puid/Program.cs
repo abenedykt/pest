@@ -3,21 +3,23 @@ using IdGen;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Logs;
+using pest.logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // logging
-builder.Logging
-    .ClearProviders()
-    .AddOpenTelemetry(x =>
-    {
-        x.AddConsoleExporter();
-        x.AddOtlpExporter(c =>
-        {
-            c.Endpoint = new Uri("http://seq/ingest/otlp/v1/logs");
-            c.Protocol = OtlpExportProtocol.HttpProtobuf;
-        });
-    });
+builder.AddLogging();
+    // .Logging
+    // .ClearProviders()
+    // .AddOpenTelemetry(x =>
+    // {
+    //     x.AddConsoleExporter();
+    //     x.AddOtlpExporter(c =>
+    //     {
+    //         c.Endpoint = new Uri("http://seq/ingest/otlp/v1/logs");
+    //         c.Protocol = OtlpExportProtocol.HttpProtobuf;
+    //     });
+    // });
 
 builder.Services.AddSingleton<IIdGenerator<long>>(new IdGenerator(0));
 builder.Services.AddEndpointsApiExplorer();

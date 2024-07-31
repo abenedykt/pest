@@ -5,12 +5,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Set the working directory
 WORKDIR /app
 
-# Copy the project file and restore dependencies
-COPY pest.puid.csproj .
-RUN dotnet restore
-
 # Copy the source code
 COPY . .
+
+WORKDIR /app/pest.logging
+RUN dotnet restore pest.logging.csproj
+
+WORKDIR /app/pest.puid
+RUN dotnet restore pest.puid.csproj
 
 # Build the application
 RUN dotnet publish -c Release -o out
@@ -19,11 +21,11 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /app/pest.puid
 EXPOSE 8080
 
 # Copy the published output from the build stage
-COPY --from=build /app/out .
+COPY --from=build /app/pest.puid/out .
 
 # Set the entry point
 ENTRYPOINT ["dotnet", "pest.puid.dll"]
