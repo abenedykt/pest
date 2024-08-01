@@ -1,12 +1,13 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.SemanticKernel;
+using pest.logging;
 using pest.pricing;
 using Kernel = Microsoft.SemanticKernel.Kernel;
 
-
-
 var builder = WebApplication.CreateBuilder(args);
+// logging
+builder.AddLogging();
 
 // lets some AI Kernel
 

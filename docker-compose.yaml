@@ -58,8 +58,8 @@ services:
   pricing:
     container_name: pricing
     build:
-      context: ./src/pest.pricing
-      dockerfile: dockerfile
+      context: ./src/
+      dockerfile: pest.pricing.dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
