@@ -4,7 +4,8 @@ using pest.logging;
 using pest.tracking;
 
 var builder = WebApplication.CreateBuilder(args);
-
+// logging
+builder.AddLogging();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

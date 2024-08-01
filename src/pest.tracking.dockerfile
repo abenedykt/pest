@@ -5,12 +5,15 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Set the working directory
 WORKDIR /app
 
-# Copy the project file and restore dependencies
-COPY pest.tracking.csproj .
-RUN dotnet restore
-
 # Copy the source code
 COPY . .
+
+WORKDIR /app/pest.logging
+RUN dotnet restore pest.logging.csproj
+
+WORKDIR /app/pest.tracking
+RUN dotnet restore pest.tracking.csproj
+
 
 # Build the application
 RUN dotnet publish -c Release -o out
@@ -19,11 +22,11 @@ RUN dotnet publish -c Release -o out
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /app/pest.tracking
 EXPOSE 8080
 
 # Copy the published output from the build stage
-COPY --from=build /app/out .
+COPY --from=build /app/pest.tracking/out .
 
 # Set the entry point
 ENTRYPOINT ["dotnet", "pest.tracking.dll"]

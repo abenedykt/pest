@@ -35,8 +35,8 @@ services:
   tracking:
     container_name: tracking
     build:
-      context: ./src/pest.tracking
-      dockerfile: dockerfile
+      context: ./src/
+      dockerfile: pest.tracking.dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
