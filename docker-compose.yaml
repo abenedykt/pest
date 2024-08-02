@@ -12,7 +12,8 @@ services:
         - 8010:8080
       networks:
         - ui
-
+      depends_on:
+        - seq
 # parcel service
   parcel:
     container_name: parcel
@@ -30,6 +31,7 @@ services:
       - puid
       - kafka
       - postgres
+      - seq
         
 # tracking service
   tracking:
@@ -43,6 +45,10 @@ services:
       - 8001:8080
     networks:
       - ui
+    depends_on:
+      - tracking-persistency
+      - seq 
+  
   tracking-persistency:
     container_name: tracking-persistency
     image: mongo:latest
@@ -52,7 +58,7 @@ services:
     ports:
       - 27017:27017
     networks: 
-      - ui
+      - ui    
 
 # pricing service
   pricing:
