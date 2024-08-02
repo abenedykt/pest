@@ -35,6 +35,7 @@ public class Worker : BackgroundService
         {
             _log.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             await ProcessOutbox();
+            await Task.Delay(1000, stoppingToken);
         }
     }
 
