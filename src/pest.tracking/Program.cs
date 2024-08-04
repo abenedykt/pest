@@ -1,11 +1,24 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using pest.logging;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
 using pest.tracking;
 
 var builder = WebApplication.CreateBuilder(args);
 // logging
-builder.AddLogging();
+builder.Logging.ClearProviders()
+    .AddOpenTelemetry(x =>
+    {
+        x.SetResourceBuilder(ResourceBuilder.CreateEmpty().AddService("pest.tracking"));
+        x.AddConsoleExporter();
+        x.AddOtlpExporter(c =>
+        {
+            c.Endpoint = new Uri("http://seq/ingest/otlp/v1/logs");
+            c.Protocol = OtlpExportProtocol.HttpProtobuf;
+        });
+    });
+
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

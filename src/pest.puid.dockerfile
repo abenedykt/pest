@@ -8,9 +8,6 @@ WORKDIR /app
 # Copy the source code
 COPY . .
 
-WORKDIR /app/pest.logging
-RUN dotnet restore pest.logging.csproj
-
 WORKDIR /app/pest.puid
 RUN dotnet restore pest.puid.csproj
 

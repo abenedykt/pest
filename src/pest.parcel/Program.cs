@@ -2,7 +2,9 @@ using FluentValidation;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
-using pest.logging;
+using OpenTelemetry.Exporter;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Resources;
 using Pest.Parcel.Endpoints;
 using Pest.Parcel.Extenstions;
 using Pest.Parcel.Outbox;
@@ -10,7 +12,17 @@ using Pest.Parcel.Outbox;
 var builder = WebApplication.CreateBuilder(args);
 
 // logging
-builder.AddLogging();
+builder.Logging.ClearProviders()
+    .AddOpenTelemetry(x =>
+    {
+        x.SetResourceBuilder(ResourceBuilder.CreateEmpty().AddService("pest.parcel"));
+        x.AddConsoleExporter();
+        x.AddOtlpExporter(c =>
+        {
+            c.Endpoint = new Uri("http://seq/ingest/otlp/v1/logs");
+            c.Protocol = OtlpExportProtocol.HttpProtobuf;
+        });
+    });
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
