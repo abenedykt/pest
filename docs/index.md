@@ -5,7 +5,7 @@ a sandbox* for multiple concepts.
 # Random notes
 * [Why there is no full-blown CI/CD pipeline?](notes/cicd_pipeline.md)
 * [Diagrams as a Code](diagrams/readme.md)
-* [Mix and match multiple diagrams without copy/pase](diagramascode_joining_diagrams.md)
+* [Mix and match multiple diagrams without copy/pase](notes/diagramascode_joining_diagrams.md)
 
 # Architecture Decision Records
 
