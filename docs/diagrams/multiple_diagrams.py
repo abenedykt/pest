@@ -1,28 +1,27 @@
-from diagrams import Cluster, Diagram, Edge
-from diagrams.aws.compute import ECS
-from diagrams.onprem.queue import Kafka
-from diagrams.onprem.network import Nginx
-from diagrams.azure.database import DatabaseForPostgresqlServers
-from architecture_diagrams.diagram1 import diag1
-from architecture_diagrams.diagram2 import diag2
+from diagrams import Diagram, Cluster
+from architecture_diagrams.joining_poc_diagram1 import subsystem1
+from architecture_diagrams.joining_poc_diagram2 import subsystem2
 from tools.DiagramTools import based_on_params
 
 show_image = based_on_params()
 
-with Diagram(show=show_image, direction="LR", filename="join1", outformat="png"):
-    diag1()
+# generate diagram for system 1
+with Diagram(show=show_image, direction="LR", filename="poc_diagram1", outformat="png"):
+    subsystem1()
 
-with Diagram(show=show_image, direction="LR", filename="join2", outformat="png"):
-    diag2()
+# generate diagram for system 2
+with Diagram(show=show_image, direction="LR", filename="poc_diagram2", outformat="png"):
+    subsystem2()
 
 
-with Diagram(show=show_image, direction="LR", filename="join3", outformat="png"):
-    with Cluster("Services"):
-        puid, rest, hello = diag1()
+# generate diagram for combined systems
+with Diagram(show=show_image, direction="LR", filename="poc_combined", outformat="png"):
+    with Cluster("Subsystem 1"):
+        kafka1 = subsystem1()
 
-    with Cluster("Other stuff"):
-        box, worker = diag2()   
+    with Cluster("Subsystem 2"):
+        kafka2 = subsystem2()
 
-    puid >> worker
+    kafka1 - kafka2
 
 
