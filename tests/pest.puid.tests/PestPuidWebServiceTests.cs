@@ -30,17 +30,17 @@ public class PestPuidWebServiceTests
     }
 }
 
-public class experiemtns
-{
-    [Fact]
-    public async Task xxx()
-    {
-        var c = new HttpClient();
-        c.BaseAddress = new Uri("http://localhost:8010");
-        c.DefaultRequestHeaders.ConnectionClose = true;
+// public class experiemtns
+// {
+//     [Fact]
+//     public async Task xxx()
+//     {
+//         var c = new HttpClient();
+//         c.BaseAddress = new Uri("http://localhost:8010");
+//         c.DefaultRequestHeaders.ConnectionClose = true;
         
-        var result =  await c.GetStringAsync("/");
+//         var result =  await c.GetStringAsync("/");
         
         
-    }
-}
+//     }
+// }
